@@ -1,8 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:twenty_four_shop/screen/second_page.dart';
 import 'package:twenty_four_shop/widget/widget.dart';
 
 import '../../blocs/blocs.dart';
+import '../first_page.dart';
 
 
 class HomeScreen extends StatelessWidget {
@@ -33,11 +35,7 @@ class HomeScreen extends StatelessWidget {
       builder: (context, state) {
         return Scaffold(
             appBar: const CustomAppBar(title: '24/7 Grocery Shop'),
-            body: Text(
-              'Counter value:${state.tabIndex}',
-              style: TextStyle(
-                  fontSize: 20, fontWeight: FontWeight.bold),
-            ),
+            body: _selectedIndex==0?FirstPage():_selectedIndex==1?SecondPage():FirstPage(),
             bottomNavigationBar: CustomNavigationBar(selectedIndex: _selectedIndex)
         );
       },
