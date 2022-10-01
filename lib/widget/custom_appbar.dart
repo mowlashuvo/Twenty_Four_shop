@@ -15,13 +15,13 @@ class CustomAppBar extends StatelessWidget with PreferredSizeWidget {
       elevation: 0,
       centerTitle: true,
       title: Container(
-        color: Colors.black,
+        color: Colors.blue,
         padding: EdgeInsets.symmetric(
           horizontal: 20.w,
           vertical: 10.h,
         ),
         child: Text(
-          '24/7',
+          title,
           style: TextStyle(
               color: Colors.white,
               fontSize: 24.sp,
@@ -31,7 +31,7 @@ class CustomAppBar extends StatelessWidget with PreferredSizeWidget {
         ),
       ),
       iconTheme: IconThemeData(
-          color: Colors.black
+          color: Colors.blue
       ),
       actions: [
         IconButton(onPressed: (){}, icon: Icon(Icons.favorite))

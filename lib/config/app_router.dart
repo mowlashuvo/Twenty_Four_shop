@@ -1,5 +1,5 @@
 import 'package:flutter/cupertino.dart';
-import 'package:twenty_four_shop/main.dart';
+import '../screen/screen.dart';
 
 class AppRouter {
   static Route onGenerate(RouteSettings settings){
@@ -8,7 +8,9 @@ class AppRouter {
       case '/':
         HomeScreen.route();
         break;
+
     }
+    return HomeScreen.route();
   }
 
 }
