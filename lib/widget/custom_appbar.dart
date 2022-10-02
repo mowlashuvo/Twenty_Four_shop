@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:twenty_four_shop/screen/wishlist/wishlist_screen.dart';
 
 class CustomAppBar extends StatelessWidget with PreferredSizeWidget {
   final String title;
@@ -13,6 +14,9 @@ class CustomAppBar extends StatelessWidget with PreferredSizeWidget {
     return AppBar(
       backgroundColor: Colors.transparent,
       elevation: 0,
+      leading: IconButton(onPressed: (){
+        Navigator.pop(context);
+      }, icon: const Icon(Icons.chevron_left)),
       centerTitle: true,
       title: Container(
         color: Colors.blue,
@@ -22,19 +26,16 @@ class CustomAppBar extends StatelessWidget with PreferredSizeWidget {
         ),
         child: Text(
           title,
-          style: TextStyle(
-              color: Colors.white,
-              fontSize: 24.sp,
-              fontFamily: 'Avenir',
-              fontWeight: FontWeight.bold
-          ),
+          style: Theme.of(context).textTheme.headline2!.copyWith(color: Colors.white),
         ),
       ),
       iconTheme: IconThemeData(
           color: Colors.blue
       ),
       actions: [
-        IconButton(onPressed: (){}, icon: Icon(Icons.favorite))
+        IconButton(onPressed: (){
+          Navigator.pushNamed(context, WishlistScreen.routeName);
+        }, icon: Icon(Icons.favorite))
       ],
     );
   }
