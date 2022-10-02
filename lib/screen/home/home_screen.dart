@@ -1,6 +1,7 @@
 import 'package:carousel_slider/carousel_slider.dart';
 import 'package:flutter/material.dart';
-import 'package:twenty_four_shop/models/category_model.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:twenty_four_shop/models/models.dart';
 import 'package:twenty_four_shop/widget/widget.dart';
 
 class HomeScreen extends StatelessWidget {
@@ -27,10 +28,21 @@ class HomeScreen extends StatelessWidget {
             initialPage: 2,
             autoPlay: true,
           ),
-          items: Category.categories.map((category) => HeroCarouselCard(category: category)).toList(),
+          items: Category.categories
+              .map((category) => HeroCarouselCard(category: category))
+              .toList(),
         ),
+        const SectionTitle(title: 'RECOMMENDED'),
+        ProductCarousel(
+            products: Product.products
+                .where((product) => product.isRecommended)
+                .toList()),
+        const SectionTitle(title: 'MOST POPULAR'),
+        ProductCarousel(
+            products: Product.products
+                .where((product) => product.isPopular)
+                .toList()),
       ],
     );
   }
 }
-
