@@ -33,7 +33,7 @@ class DashboardScreen extends StatelessWidget {
       },
       builder: (context, state) {
         return Scaffold(
-            appBar: CustomAppBar(title: selectedIndex==0?'24/7 Grocery Shop':selectedIndex==1?'Cart':'Profile'),
+            appBar: CustomAppBar(title: selectedIndex==0?'24/7 Grocery Shop':selectedIndex==1?'Cart':'Profile', index: selectedIndex),
             body: selectedIndex==0?const HomeScreen():selectedIndex==1?const CartScreen():const ProfileScreen(),
             bottomNavigationBar: CustomNavigationBar(selectedIndex: selectedIndex)
         );

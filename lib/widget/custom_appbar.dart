@@ -4,9 +4,11 @@ import 'package:twenty_four_shop/screen/wishlist/wishlist_screen.dart';
 
 class CustomAppBar extends StatelessWidget with PreferredSizeWidget {
   final String title;
+  final int? index;
   const CustomAppBar({
     Key? key,
-    required this.title
+    required this.title,
+    this.index
   }) : super(key: key);
 
   @override
@@ -14,8 +16,26 @@ class CustomAppBar extends StatelessWidget with PreferredSizeWidget {
     return AppBar(
       backgroundColor: Colors.transparent,
       elevation: 0,
-      leading: IconButton(onPressed: (){
-        Navigator.pop(context);
+      leading: index!=null?Container():IconButton(onPressed: (){
+        // if(index!=null){
+        //   AlertDialog(
+        //     title: Text('Are you sure?'),
+        //     content: Text('Do you want to exit an App'),
+        //     actions: <Widget>[
+        //       TextButton(
+        //         onPressed: () => Navigator.of(context).pop(false),
+        //         child: Text('No'),
+        //       ),
+        //       TextButton(
+        //         onPressed: () => Navigator.of(context).pop(true),
+        //         child: Text('Yes'),
+        //       ),
+        //     ],
+        //   );
+        // } else{
+          Navigator.pop(context);
+        // }
+
       }, icon: const Icon(Icons.chevron_left)),
       centerTitle: true,
       title: Container(
@@ -29,13 +49,13 @@ class CustomAppBar extends StatelessWidget with PreferredSizeWidget {
           style: Theme.of(context).textTheme.headline2!.copyWith(color: Colors.white),
         ),
       ),
-      iconTheme: IconThemeData(
+      iconTheme: const IconThemeData(
           color: Colors.blue
       ),
       actions: [
-        IconButton(onPressed: (){
+        index==null?Container():IconButton(onPressed: (){
           Navigator.pushNamed(context, WishlistScreen.routeName);
-        }, icon: Icon(Icons.favorite))
+        }, icon: const Icon(Icons.favorite))
       ],
     );
   }
