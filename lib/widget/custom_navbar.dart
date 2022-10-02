@@ -19,8 +19,8 @@ class CustomNavigationBar extends StatelessWidget {
             label: 'Home',
           ),
           BottomNavigationBarItem(
-            icon: Icon(Icons.search),
-            label: 'Search',
+            icon: Icon(Icons.shopping_cart),
+            label: 'Cart',
           ),
           BottomNavigationBarItem(
             icon: Icon(Icons.person),
@@ -33,8 +33,7 @@ class CustomNavigationBar extends StatelessWidget {
         selectedItemColor: Colors.black,
         iconSize: 20,
         onTap: (index) {
-          context.read<BottomNavigationBarBloc>().add(
-              ChangeBottomNavigationBarEvent(index: index));
+          context.read<BottomNavigationBarBloc>().add(ChangeBottomNavigationBarEvent(index: index));
         },
         elevation: 5
     );

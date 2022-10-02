@@ -12,7 +12,6 @@ class BottomNavigationBarBloc extends Bloc<BottomNavigationBarEvent, BottomNavig
    on<ChangeBottomNavigationBarEvent>(_changeTab);
   }
   void _changeTab(ChangeBottomNavigationBarEvent event, Emitter<BottomNavigationBarState> emit) {
-    print('clicked ${event.index}');
     int index = event.index;
     emit(BottomNavigationBarState(tabIndex: index));
   }

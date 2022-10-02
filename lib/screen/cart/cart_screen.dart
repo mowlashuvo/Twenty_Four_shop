@@ -1,17 +1,17 @@
 import 'package:flutter/material.dart';
 
 
-class HomeScreen extends StatelessWidget {
+class CartScreen extends StatelessWidget {
 
 
-  const HomeScreen({Key? key}) : super(key: key);
+  const CartScreen({Key? key}) : super(key: key);
 
-  static const String routeName = '/home';
+  static const String routeName = '/cart';
 
   static Route route() {
     return MaterialPageRoute(
       settings: const RouteSettings(name: routeName),
-      builder: (_) => const HomeScreen(),
+      builder: (_) => const CartScreen(),
     );
   }
 
@@ -19,9 +19,8 @@ class HomeScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     return ListView(
       children: const[
-        Center(child: Text('This Home')),
+        Center(child: Text('This Cart'))
       ],
     );
   }
 }
-
