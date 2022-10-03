@@ -1,6 +1,7 @@
-export 'package:twenty_four_shop/screen/dashboard/dashboard_screen.dart';
-export 'package:twenty_four_shop/screen/home/home_screen.dart';
-export 'package:twenty_four_shop/screen/cart/cart_screen.dart';
-export 'package:twenty_four_shop/screen/profile/profile_screen.dart';
-export 'package:twenty_four_shop/screen/wishlist/wishlist_screen.dart';
-export 'package:twenty_four_shop/screen/catalog/catalog_screen.dart';
+export 'dashboard/dashboard_screen.dart';
+export 'home/home_screen.dart';
+export 'cart/cart_screen.dart';
+export 'profile/profile_screen.dart';
+export 'wishlist/wishlist_screen.dart';
+export 'catalog/catalog_screen.dart';
+export 'product_screen/product_screen.dart';
