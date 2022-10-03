@@ -4,19 +4,24 @@ import 'package:twenty_four_shop/models/models.dart';
 import 'package:twenty_four_shop/screen/catalog/catalog_screen.dart';
 
 class HeroCarouselCard extends StatelessWidget {
-  final Category category;
+  final Category? category;
+  final Product? product;
 
-  const HeroCarouselCard({Key? key, required this.category}) : super(key: key);
+  const HeroCarouselCard({Key? key, this.category, this.product})
+      : super(key: key);
 
   @override
   Widget build(BuildContext context) {
     return InkWell(
       onTap: () {
-        Navigator.pushNamed(
-          context,
-          CatalogScreen.routeName,
-          arguments: category,
-        );
+        if(product==null){
+          Navigator.pushNamed(
+            context,
+            CatalogScreen.routeName,
+            arguments: category,
+          );
+        }
+
       },
       child: Container(
         margin: EdgeInsets.symmetric(vertical: 20.0.h, horizontal: 5.0.w),
@@ -24,7 +29,7 @@ class HeroCarouselCard extends StatelessWidget {
             borderRadius: BorderRadius.all(Radius.circular(5.0.r)),
             child: Stack(
               children: <Widget>[
-                Image.network(category.imgUrl,
+                Image.network(product == null ? category!.imgUrl : product!.imgUrl,
                     fit: BoxFit.cover, width: 1000.0),
                 Positioned(
                   bottom: 0.0,
@@ -44,7 +49,7 @@ class HeroCarouselCard extends StatelessWidget {
                     padding: EdgeInsets.symmetric(
                         vertical: 10.0.h, horizontal: 20.0.w),
                     child: Text(
-                      category.name,
+                      product == null ? category!.name : '',
                       style: Theme.of(context)
                           .textTheme
                           .headline2!

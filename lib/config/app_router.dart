@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:twenty_four_shop/models/category_model.dart';
+import 'package:twenty_four_shop/models/product_model.dart';
 import '../screen/screen.dart';
 
 class AppRouter {
@@ -17,6 +18,8 @@ class AppRouter {
         return WishlistScreen.route();
       case CatalogScreen.routeName:
         return CatalogScreen.route(category: settings.arguments as Category);
+      case ProductScreen.routeName:
+        return ProductScreen.route(product: settings.arguments as Product);
       default:
         return _errorRoute();
     }

@@ -53,7 +53,7 @@ class CustomAppBar extends StatelessWidget with PreferredSizeWidget {
           color: Colors.blue
       ),
       actions: [
-        index==null?Container():IconButton(onPressed: (){
+        title=='Wishlist'?Container():IconButton(onPressed: (){
           Navigator.pushNamed(context, WishlistScreen.routeName);
         }, icon: const Icon(Icons.favorite))
       ],
