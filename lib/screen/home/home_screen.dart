@@ -1,6 +1,5 @@
 import 'package:carousel_slider/carousel_slider.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:twenty_four_shop/models/models.dart';
 import 'package:twenty_four_shop/widget/widget.dart';
 
@@ -22,11 +21,10 @@ class HomeScreen extends StatelessWidget {
       children: [
         CarouselSlider(
           options: CarouselOptions(
-            aspectRatio: 2.0,
+            aspectRatio: 1.5,
+            viewportFraction: 0.9,
             enlargeCenterPage: true,
-            enableInfiniteScroll: false,
-            initialPage: 2,
-            autoPlay: true,
+            enlargeStrategy: CenterPageEnlargeStrategy.height
           ),
           items: Category.categories
               .map((category) => HeroCarouselCard(category: category))

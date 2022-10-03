@@ -4,16 +4,18 @@ import 'package:twenty_four_shop/models/models.dart';
 
 class ProductCard extends StatelessWidget {
   final Product product;
+  final double widthFactor;
   const ProductCard({
-    Key? key, required this.product,
+    Key? key, required this.product, this.widthFactor = 2.5,
   }) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
+    final double widthValue = MediaQuery.of(context).size.width / widthFactor;
     return Stack(
       children: [
         SizedBox(
-          width: MediaQuery.of(context).size.width / 2.5.w,
+          width: widthValue.w,
           height: 150.h,
           child: Image.network(
             product.imgUrl,
@@ -23,7 +25,7 @@ class ProductCard extends StatelessWidget {
         Positioned(
           top: 60,
           child: Container(
-            width: MediaQuery.of(context).size.width / 2.5.w,
+            width: widthValue.w,
             height: 80.h,
             decoration: BoxDecoration(
               color: Colors.black.withAlpha(50),
@@ -34,7 +36,7 @@ class ProductCard extends StatelessWidget {
           top: 60,
           left: 5,
           child: Container(
-            width: MediaQuery.of(context).size.width / 2.5.w - 10.w,
+            width: widthValue.w - 10.w,
             height: 80.h,
             decoration: BoxDecoration(
               color: Colors.black.withAlpha(50),

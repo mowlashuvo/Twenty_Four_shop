@@ -1,13 +1,9 @@
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:twenty_four_shop/screen/catalog/catalog_screen.dart';
-import 'package:twenty_four_shop/screen/dashboard/dashboard_screen.dart';
-import 'package:twenty_four_shop/screen/wishlist/wishlist_screen.dart';
+import 'package:twenty_four_shop/models/category_model.dart';
 import '../screen/screen.dart';
 
 class AppRouter {
   static Route onGenerateRoute(RouteSettings settings) {
-    print('this is route: ${settings.name}');
     switch (settings.name) {
       case '/':
         return DashboardScreen.route();
@@ -20,7 +16,7 @@ class AppRouter {
       case WishlistScreen.routeName:
         return WishlistScreen.route();
       case CatalogScreen.routeName:
-        return CatalogScreen.route();
+        return CatalogScreen.route(category: settings.arguments as Category);
       default:
         return _errorRoute();
     }
