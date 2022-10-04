@@ -4,8 +4,7 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:twenty_four_shop/config/app_router.dart';
 import 'package:twenty_four_shop/config/theme.dart';
 import 'package:twenty_four_shop/screen/screen.dart';
-
-import 'blocs/bottom_nav/bottom_nav_bloc.dart';
+import 'blocs/blocs.dart';
 
 void main() {
   runApp(const MyApp());
@@ -22,9 +21,9 @@ class MyApp extends StatelessWidget {
           BlocProvider<BottomNavigationBarBloc>(
             create: (context) => BottomNavigationBarBloc(),
           ),
-          // BlocProvider<CounterBloc>(
-          //   create: (context) => CounterBloc(),
-          // )
+          BlocProvider<WishlistBloc>(
+            create: (context) => WishlistBloc()..add(StartWishlist()),
+          )
         ],
         child: ScreenUtilInit(
           designSize: const Size(414, 896),

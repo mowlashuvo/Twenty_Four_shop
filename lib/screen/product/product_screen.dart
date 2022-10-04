@@ -1,7 +1,9 @@
 import 'package:carousel_slider/carousel_slider.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:twenty_four_shop/blocs/blocs.dart';
 import 'package:twenty_four_shop/models/product_model.dart';
 import 'package:twenty_four_shop/widget/widget.dart';
 
@@ -82,41 +84,47 @@ class ProductScreen extends StatelessWidget {
               ],
             ),
           ),
-          ExpansionTile(
-            initiallyExpanded: true,
-            title: Text(
-              'Product information',
-              style: Theme.of(context).textTheme.headline3,
-            ),
-            children: [
-              ListTile(
-                title: Text(
-                  'Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry\'s standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.',
-                  style: Theme.of(context).textTheme.bodyText1,
-                ),
+          Padding(
+            padding: EdgeInsets.symmetric(horizontal: 20.0.w),
+            child: ExpansionTile(
+              initiallyExpanded: true,
+              title: Text(
+                'Product information',
+                style: Theme.of(context).textTheme.headline3,
               ),
-            ],
+              children: [
+                ListTile(
+                  title: Text(
+                    'Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry\'s standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.',
+                    style: Theme.of(context).textTheme.bodyText1,
+                  ),
+                ),
+              ],
+            ),
           ),
-          ExpansionTile(
-            initiallyExpanded: true,
-            title: Text(
-              'Delivery information',
-              style: Theme.of(context).textTheme.headline3,
-            ),
-            children: [
-              ListTile(
-                title: Text(
-                  'Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry\'s standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.',
-                  style: Theme.of(context).textTheme.bodyText1,
-                ),
+          Padding(
+            padding: EdgeInsets.symmetric(horizontal: 20.0.w),
+            child: ExpansionTile(
+              initiallyExpanded: true,
+              title: Text(
+                'Delivery information',
+                style: Theme.of(context).textTheme.headline3,
               ),
-            ],
+              children: [
+                ListTile(
+                  title: Text(
+                    'Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry\'s standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.',
+                    style: Theme.of(context).textTheme.bodyText1,
+                  ),
+                ),
+              ],
+            ),
           ),
         ],
       ),
       bottomNavigationBar: BottomAppBar(
         color: Colors.black,
-        child: Container(
+        child: SizedBox(
           height: 70.h,
           child: Row(
             mainAxisAlignment: MainAxisAlignment.spaceEvenly,
@@ -128,12 +136,24 @@ class ProductScreen extends StatelessWidget {
                   color: Colors.white,
                 ),
               ),
-              IconButton(
-                onPressed: () {},
-                icon: const Icon(
-                  Icons.favorite,
-                  color: Colors.white,
-                ),
+              BlocBuilder<WishlistBloc, WishlistState>(
+                builder: (context, state) {
+                  return IconButton(
+                    onPressed: () {
+                      context
+                          .read<WishlistBloc>()
+                          .add(AddWishlistProduct(product));
+                      ScaffoldMessenger.of(context).showSnackBar(const SnackBar(
+                        content: Text('Added to your wishlist!'),
+                        duration: Duration(milliseconds: 300),
+                      ));
+                    },
+                    icon: const Icon(
+                      Icons.favorite,
+                      color: Colors.white,
+                    ),
+                  );
+                },
               ),
               ElevatedButton(
                 style: ElevatedButton.styleFrom(backgroundColor: Colors.white),
