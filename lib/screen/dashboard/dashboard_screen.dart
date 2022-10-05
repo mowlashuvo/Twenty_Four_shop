@@ -32,10 +32,11 @@ class DashboardScreen extends StatelessWidget {
         // ));
       },
       builder: (context, state) {
+        print('index: $selectedIndex');
         return Scaffold(
             appBar: CustomAppBar(title: selectedIndex==0?'24/7 Grocery Shop':selectedIndex==1?'Cart':'Profile', index: selectedIndex),
             body: selectedIndex==0?const HomeScreen():selectedIndex==1?const CartScreen():const ProfileScreen(),
-            bottomNavigationBar: CustomNavigationBar(selectedIndex: selectedIndex)
+            bottomNavigationBar: selectedIndex==1?const BottomAppBar() : CustomNavigationBar(selectedIndex: selectedIndex)
         );
       },
     );
