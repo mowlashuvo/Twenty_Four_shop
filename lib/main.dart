@@ -1,12 +1,14 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:twenty_four_shop/config/app_router.dart';
-import 'package:twenty_four_shop/config/theme.dart';
-import 'package:twenty_four_shop/screen/screen.dart';
+import '../blocs/simple_bloc_observer.dart';
+import '../config/app_router.dart';
+import '../config/theme.dart';
+import '../screen/screen.dart';
 import 'blocs/blocs.dart';
 
 void main() {
+  Bloc.observer = SimpleBlocObserver();
   runApp(const MyApp());
 }
 

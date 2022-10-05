@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:twenty_four_shop/models/category_model.dart';
-import 'package:twenty_four_shop/models/product_model.dart';
+import '../models/models.dart';
 import '../screen/screen.dart';
 
 class AppRouter {

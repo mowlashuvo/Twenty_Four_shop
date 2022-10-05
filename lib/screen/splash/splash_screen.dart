@@ -1,10 +1,7 @@
 import 'dart:async';
-
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:twenty_four_shop/screen/dashboard/dashboard_screen.dart';
-import 'package:twenty_four_shop/screen/home/home_screen.dart';
+
+import '../screen.dart';
 
 class SplashScreen extends StatelessWidget {
   const SplashScreen({Key? key}) : super(key: key);

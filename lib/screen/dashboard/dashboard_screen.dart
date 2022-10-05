@@ -1,8 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:twenty_four_shop/screen/screen.dart';
-import 'package:twenty_four_shop/widget/widget.dart';
-
+import '../../screen/screen.dart';
+import '../../widget/widget.dart';
 import '../../blocs/blocs.dart';
 
 

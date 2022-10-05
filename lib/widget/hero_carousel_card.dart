@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:twenty_four_shop/models/models.dart';
-import 'package:twenty_four_shop/screen/catalog/catalog_screen.dart';
+import '../../models/models.dart';
+import '../screen/screen.dart';
 
 class HeroCarouselCard extends StatelessWidget {
   final Category? category;

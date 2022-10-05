@@ -1,7 +1,7 @@
 import 'package:carousel_slider/carousel_slider.dart';
 import 'package:flutter/material.dart';
-import 'package:twenty_four_shop/models/models.dart';
-import 'package:twenty_four_shop/widget/widget.dart';
+import '../../models/models.dart';
+import '../../widget/widget.dart';
 
 class HomeScreen extends StatelessWidget {
   const HomeScreen({Key? key}) : super(key: key);

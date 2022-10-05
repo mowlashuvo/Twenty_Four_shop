@@ -2,9 +2,9 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:twenty_four_shop/blocs/blocs.dart';
-import 'package:twenty_four_shop/models/models.dart';
-import 'package:twenty_four_shop/widget/widget.dart';
+
+import '../../blocs/blocs.dart';
+import '../../widget/widget.dart';
 
 class CartScreen extends StatelessWidget {
   const CartScreen({Key? key}) : super(key: key);

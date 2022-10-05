@@ -1,9 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:twenty_four_shop/blocs/blocs.dart';
-import 'package:twenty_four_shop/models/models.dart';
-import 'package:twenty_four_shop/screen/product/product_screen.dart';
+
+import '../blocs/blocs.dart';
+import '../models/models.dart';
+import '../screen/screen.dart';
 
 class ProductCard extends StatelessWidget {
   final Product product;

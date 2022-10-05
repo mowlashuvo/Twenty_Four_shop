@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:twenty_four_shop/models/models.dart';
-import 'package:twenty_four_shop/widget/widget.dart';
+import '../../models/models.dart';
+import '../../widget/widget.dart';
 
 class CatalogScreen extends StatelessWidget {
   final Category category;
