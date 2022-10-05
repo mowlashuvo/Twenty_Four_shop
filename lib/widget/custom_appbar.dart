@@ -67,15 +67,6 @@ class CustomAppBar extends StatelessWidget with PreferredSizeWidget {
       ),
       iconTheme: const IconThemeData(color: Colors.blue),
       actions: [
-        index == 1
-            ? IconButton(
-                onPressed: () {
-                  context
-                      .read<BottomNavigationBarBloc>()
-                      .add(const ChangeBottomNavigationBarEvent(index: 0));
-                },
-                icon: const Icon(Icons.shopping_bag))
-            : Container(),
         title == 'Wishlist'
             ? Container()
             : IconButton(

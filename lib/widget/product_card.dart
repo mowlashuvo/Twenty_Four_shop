@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:twenty_four_shop/blocs/blocs.dart';
 import 'package:twenty_four_shop/models/models.dart';
 import 'package:twenty_four_shop/screen/product/product_screen.dart';
 
@@ -86,25 +88,46 @@ class ProductCard extends StatelessWidget {
                         ],
                       ),
                     ),
-                    Expanded(
-                      child: IconButton(
-                        onPressed: () {},
-                        icon: const Icon(
-                          Icons.add_circle,
-                          color: Colors.white,
-                        ),
-                      ),
+                    BlocBuilder<CartBloc, CartState>(
+                      builder: (context, state) {
+                        if (state is CartLoading) {
+                          return const Center(
+                            child: CircularProgressIndicator(),
+                          );
+                        }
+                        if (state is CartLoaded) {
+                          return Expanded(
+                            child: IconButton(
+                              onPressed: () {
+                                ScaffoldMessenger.of(context).showSnackBar(const SnackBar(
+                                  content: Text('Added to your cart!'),
+                                  duration: Duration(milliseconds: 300),
+                                ));
+                                context.read<CartBloc>().add(CartProductAdded(product));
+                              },
+                              icon: const Icon(
+                                Icons.add_circle,
+                                color: Colors.white,
+                              ),
+                            ),
+                          );
+                        }
+                        else {
+                          return Text('Something Went Wrong');
+                        }
+                      },
                     ),
-                    isWishlist?
-                    Expanded(
-                      child: IconButton(
-                        onPressed: () {},
-                        icon: const Icon(
-                          Icons.delete,
-                          color: Colors.white,
-                        ),
-                      ),
-                    ): const SizedBox()
+                    isWishlist
+                        ? Expanded(
+                            child: IconButton(
+                              onPressed: () {},
+                              icon: const Icon(
+                                Icons.delete,
+                                color: Colors.white,
+                              ),
+                            ),
+                          )
+                        : const SizedBox()
                   ],
                 ),
               ),

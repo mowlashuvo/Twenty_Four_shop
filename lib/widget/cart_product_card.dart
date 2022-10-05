@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:twenty_four_shop/blocs/blocs.dart';
 
 import '../models/product_model.dart';
 
@@ -38,21 +40,37 @@ class CartProductCard extends StatelessWidget {
               ],
             ),
           ),
-          Row(
-            children: [
-              IconButton(
-                onPressed: () {},
-                icon: Icon(Icons.remove_circle),
-              ),
-              Text(
-                '1',
-                style: Theme.of(context).textTheme.headline5,
-              ),
-              IconButton(
-                onPressed: () {},
-                icon: Icon(Icons.add_circle),
-              ),
-            ],
+          BlocBuilder<CartBloc, CartState>(
+            builder: (context, state) {
+              return Row(
+                children: [
+                  IconButton(
+                    onPressed: () {
+                      ScaffoldMessenger.of(context).showSnackBar(const SnackBar(
+                        content: Text('Remove to your cart!'),
+                        duration: Duration(milliseconds: 300),
+                      ));
+                      context.read<CartBloc>().add(CartProductRemove(product),);
+                    },
+                    icon: Icon(Icons.remove_circle),
+                  ),
+                  Text(
+                    '1',
+                    style: Theme.of(context).textTheme.headline5,
+                  ),
+                  IconButton(
+                    onPressed: () {
+                      ScaffoldMessenger.of(context).showSnackBar(const SnackBar(
+                        content: Text('Added to your cart!'),
+                        duration: Duration(milliseconds: 300),
+                      ));
+                      context.read<CartBloc>().add(CartProductAdded(product));
+                    },
+                    icon: Icon(Icons.add_circle),
+                  ),
+                ],
+              );
+            },
           )
         ],
       ),

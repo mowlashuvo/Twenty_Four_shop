@@ -26,6 +26,7 @@ class CartScreen extends StatelessWidget {
           );
       return false;
     }
+
     return WillPopScope(
       onWillPop: onWillPop,
       child: Scaffold(
@@ -49,15 +50,14 @@ class CartScreen extends StatelessWidget {
                           mainAxisAlignment: MainAxisAlignment.spaceBetween,
                           children: [
                             Text(
-                              const Cart().freeDeliveryString,
+                              state.cart.freeDeliveryString,
                               style: Theme.of(context).textTheme.headline5,
                             ),
                             ElevatedButton(
                               onPressed: () {
                                 context.read<BottomNavigationBarBloc>().add(
-                                      const ChangeBottomNavigationBarEvent(
-                                          index: 0),
-                                    );
+                                    const ChangeBottomNavigationBarEvent(
+                                        index: 0));
                               },
                               style: ElevatedButton.styleFrom(
                                   primary: Colors.black,
@@ -79,10 +79,10 @@ class CartScreen extends StatelessWidget {
                         SizedBox(
                           height: 480.w,
                           child: ListView.builder(
-                            itemCount: Cart().products.length,
+                            itemCount: state.cart.products.length,
                             itemBuilder: (context, index) {
                               return CartProductCard(
-                                product: Cart().products[index],
+                                product: state.cart.products[index],
                               );
                             },
                           ),
@@ -111,7 +111,7 @@ class CartScreen extends StatelessWidget {
                                         Theme.of(context).textTheme.headline5,
                                   ),
                                   Text(
-                                    'BDT ${Cart().subtotalString}',
+                                    'BDT ${state.cart.subtotalString}',
                                     style:
                                         Theme.of(context).textTheme.headline5,
                                   )
@@ -130,7 +130,7 @@ class CartScreen extends StatelessWidget {
                                         Theme.of(context).textTheme.headline5,
                                   ),
                                   Text(
-                                    'BDT ${Cart().deliveryFeeString}',
+                                    'BDT ${state.cart.deliveryFeeString}',
                                     style:
                                         Theme.of(context).textTheme.headline5,
                                   )
@@ -171,7 +171,7 @@ class CartScreen extends StatelessWidget {
                                           .copyWith(color: Colors.white),
                                     ),
                                     Text(
-                                      'BDT ${Cart().totalString}',
+                                      'BDT ${state.cart.totalString}',
                                       style: Theme.of(context)
                                           .textTheme
                                           .headline5!
