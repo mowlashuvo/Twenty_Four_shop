@@ -46,10 +46,10 @@ class CartProductCard extends StatelessWidget {
                 children: [
                   IconButton(
                     onPressed: () {
-                      ScaffoldMessenger.of(context).showSnackBar(const SnackBar(
-                        content: Text('Remove to your cart!'),
-                        duration: Duration(milliseconds: 300),
-                      ));
+                      // ScaffoldMessenger.of(context).showSnackBar(const SnackBar(
+                      //   content: Text('Remove to your cart!'),
+                      //   duration: Duration(milliseconds: 300),
+                      // ));
                       context.read<CartBloc>().add(CartProductRemove(product),);
                     },
                     icon: Icon(Icons.remove_circle),
@@ -60,10 +60,10 @@ class CartProductCard extends StatelessWidget {
                   ),
                   IconButton(
                     onPressed: () {
-                      ScaffoldMessenger.of(context).showSnackBar(const SnackBar(
-                        content: Text('Added to your cart!'),
-                        duration: Duration(milliseconds: 300),
-                      ));
+                      // ScaffoldMessenger.of(context).showSnackBar(const SnackBar(
+                      //   content: Text('Added to your cart!'),
+                      //   duration: Duration(milliseconds: 300),
+                      // ));
                       context.read<CartBloc>().add(CartProductAdded(product));
                     },
                     icon: Icon(Icons.add_circle),
