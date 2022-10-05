@@ -1,7 +1,9 @@
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:twenty_four_shop/blocs/blocs.dart';
+import 'package:twenty_four_shop/models/cart_model.dart';
 import 'package:twenty_four_shop/screen/dashboard/dashboard_screen.dart';
 import 'package:twenty_four_shop/screen/home/home_screen.dart';
 import 'package:twenty_four_shop/widget/widget.dart';
@@ -43,9 +45,9 @@ class CartScreen extends StatelessWidget {
       // Navigator.pushNamed(context, DashboardScreen.routeName);
       // Navigator.of(context).pushNamedAndRemoveUntil(
       //     DashboardScreen.routeName, (Route<dynamic> route) => false);
-      context
-          .read<BottomNavigationBarBloc>()
-          .add(const ChangeBottomNavigationBarEvent(index: 0));
+      context.read<BottomNavigationBarBloc>().add(
+            const ChangeBottomNavigationBarEvent(index: 0),
+          );
       return false;
     }
 
@@ -63,11 +65,15 @@ class CartScreen extends StatelessWidget {
                     mainAxisAlignment: MainAxisAlignment.spaceBetween,
                     children: [
                       Text(
-                        'Add BDT 20.0 for free delivery',
+                        Cart().freeDeliveryString,
                         style: Theme.of(context).textTheme.headline5,
                       ),
                       ElevatedButton(
-                        onPressed: () {},
+                        onPressed: () {
+                          context.read<BottomNavigationBarBloc>().add(
+                                const ChangeBottomNavigationBarEvent(index: 0),
+                              );
+                        },
                         style: ElevatedButton.styleFrom(
                             primary: Colors.black,
                             shape: const RoundedRectangleBorder(),
@@ -85,11 +91,16 @@ class CartScreen extends StatelessWidget {
                   SizedBox(
                     width: 10.w,
                   ),
-                  CartProductCard(
-                    product: Product.products[0],
-                  ),
-                  CartProductCard(
-                    product: Product.products[0],
+                  SizedBox(
+                    height: 480.w,
+                    child: ListView.builder(
+                      itemCount:90,
+                      itemBuilder: (context, index) {
+                        return CartProductCard(
+                          product: Product.products[0],
+                        );
+                      },
+                    ),
                   ),
                 ],
               ),
@@ -113,7 +124,7 @@ class CartScreen extends StatelessWidget {
                               style: Theme.of(context).textTheme.headline5,
                             ),
                             Text(
-                              'BDT 20',
+                              'BDT ${Cart().subtotalString}',
                               style: Theme.of(context).textTheme.headline5,
                             )
                           ],
@@ -129,7 +140,7 @@ class CartScreen extends StatelessWidget {
                               style: Theme.of(context).textTheme.headline5,
                             ),
                             Text(
-                              'BDT 20',
+                              'BDT ${Cart().deliveryFeeString}',
                               style: Theme.of(context).textTheme.headline5,
                             )
                           ],
@@ -167,7 +178,7 @@ class CartScreen extends StatelessWidget {
                                     .copyWith(color: Colors.white),
                               ),
                               Text(
-                                'BDT 20',
+                                'BDT ${Cart().totalString}',
                                 style: Theme.of(context)
                                     .textTheme
                                     .headline5!
@@ -185,15 +196,21 @@ class CartScreen extends StatelessWidget {
           ),
         ),
         bottomNavigationBar: BottomAppBar(
-          child: ElevatedButton(
-            onPressed: () {},
-            style: ElevatedButton.styleFrom(backgroundColor: Colors.black),
-            child: Text(
-              'GO TO CHECKOUT',
-              style: Theme.of(context)
-                  .textTheme
-                  .headline5!
-                  .copyWith(color: Colors.white),
+          color: Colors.black,
+          child: SizedBox(
+            height: 70.h,
+            child: Row(
+              mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+              children: [
+                ElevatedButton(
+                  onPressed: () {},
+                  style: ElevatedButton.styleFrom(primary: Colors.white),
+                  child: Text(
+                    'GO TO CHECKOUT',
+                    style: Theme.of(context).textTheme.headline3,
+                  ),
+                ),
+              ],
             ),
           ),
         ),
