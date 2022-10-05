@@ -23,6 +23,9 @@ class MyApp extends StatelessWidget {
           ),
           BlocProvider<WishlistBloc>(
             create: (context) => WishlistBloc()..add(StartWishlist()),
+          ),
+          BlocProvider<CartBloc>(
+            create: (context) => CartBloc()..add(CartStarted()),
           )
         ],
         child: ScreenUtilInit(

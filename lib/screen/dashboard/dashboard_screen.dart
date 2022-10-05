@@ -26,13 +26,8 @@ class DashboardScreen extends StatelessWidget {
     return BlocConsumer<BottomNavigationBarBloc, BottomNavigationBarState>(
       listener: (context, state) {
         selectedIndex = state.tabIndex;
-        // ScaffoldMessenger.of(context).showSnackBar(SnackBar(
-        //   content: Text('Successfully incremented ${selectedIndex}'),
-        //   duration: Duration(milliseconds: 300),
-        // ));
       },
       builder: (context, state) {
-        print('index: $selectedIndex');
         return Scaffold(
             appBar: CustomAppBar(title: selectedIndex==0?'24/7 Grocery Shop':selectedIndex==1?'Cart':'Profile', index: selectedIndex),
             body: selectedIndex==0?const HomeScreen():selectedIndex==1?const CartScreen():const ProfileScreen(),
@@ -40,5 +35,11 @@ class DashboardScreen extends StatelessWidget {
         );
       },
     );
+  }
+  Future<void> resetIsBackPressed(bool isBackPressed) async {
+    await Future<void>.delayed(const Duration(seconds: 10));
+    if(isBackPressed){
+      isBackPressed = false;
+    }
   }
 }

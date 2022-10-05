@@ -7,6 +7,7 @@ abstract class WishlistEvent extends Equatable {
 }
 
 class StartWishlist extends WishlistEvent {}
+
 class AddWishlistProduct extends WishlistEvent {
   final Product product;
 
