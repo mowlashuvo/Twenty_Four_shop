@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:twenty_four_shop/blocs/blocs.dart';
 import 'package:twenty_four_shop/screen/dashboard/dashboard_screen.dart';
 import 'package:twenty_four_shop/screen/home/home_screen.dart';
 import 'package:twenty_four_shop/widget/widget.dart';
@@ -41,7 +43,10 @@ class CartScreen extends StatelessWidget {
       // Navigator.pushNamed(context, DashboardScreen.routeName);
       // Navigator.of(context).pushNamedAndRemoveUntil(
       //     DashboardScreen.routeName, (Route<dynamic> route) => false);
-      return true;
+      context
+          .read<BottomNavigationBarBloc>()
+          .add(const ChangeBottomNavigationBarEvent(index: 0));
+      return false;
     }
 
     return WillPopScope(
@@ -174,21 +179,24 @@ class CartScreen extends StatelessWidget {
                       ),
                     ],
                   ),
-                  SizedBox(
-                    height: 20.h,
-                  ),
-                  ElevatedButton(
-                    onPressed: () {},
-                    style: ElevatedButton.styleFrom(backgroundColor: Colors.black),
-                    child: Text('GO TO CHECKOUT', style: Theme.of(context).textTheme.headline5!.copyWith(color: Colors.white),),
-                  ),
                 ],
               ),
             ],
           ),
         ),
-        // bottomNavigationBar: BottomAppBar(child: ElevatedButton(onPressed: () {},
-        // child: Text('Checkout'),)),
+        bottomNavigationBar: BottomAppBar(
+          child: ElevatedButton(
+            onPressed: () {},
+            style: ElevatedButton.styleFrom(backgroundColor: Colors.black),
+            child: Text(
+              'GO TO CHECKOUT',
+              style: Theme.of(context)
+                  .textTheme
+                  .headline5!
+                  .copyWith(color: Colors.white),
+            ),
+          ),
+        ),
       ),
     );
   }
