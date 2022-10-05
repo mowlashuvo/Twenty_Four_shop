@@ -17,30 +17,46 @@ class HomeScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return ListView(
-      children: [
-        CarouselSlider(
-          options: CarouselOptions(
-            aspectRatio: 1.5,
-            viewportFraction: 0.9,
-            enlargeCenterPage: true,
-            enlargeStrategy: CenterPageEnlargeStrategy.height
+    DateTime currentBackPressTime = DateTime.now();
+    Future<bool> onWillPop() {
+      DateTime now = DateTime.now();
+      if (currentBackPressTime == null || now.difference(currentBackPressTime) > Duration(seconds: 2)) {
+        currentBackPressTime = now;
+        ScaffoldMessenger.of(context).showSnackBar(const SnackBar(
+          content: Text('Press again to exit!'),
+          duration: Duration(milliseconds: 300),
+        ));
+        return Future.value(false);
+      }
+      return Future.value(true);
+    }
+    return WillPopScope(
+      onWillPop: onWillPop,
+      child: ListView(
+        children: [
+          CarouselSlider(
+            options: CarouselOptions(
+              aspectRatio: 1.5,
+              viewportFraction: 0.9,
+              enlargeCenterPage: true,
+              enlargeStrategy: CenterPageEnlargeStrategy.height
+            ),
+            items: Category.categories
+                .map((category) => HeroCarouselCard(category: category))
+                .toList(),
           ),
-          items: Category.categories
-              .map((category) => HeroCarouselCard(category: category))
-              .toList(),
-        ),
-        const SectionTitle(title: 'RECOMMENDED'),
-        ProductCarousel(
-            products: Product.products
-                .where((product) => product.isRecommended)
-                .toList()),
-        const SectionTitle(title: 'MOST POPULAR'),
-        ProductCarousel(
-            products: Product.products
-                .where((product) => product.isPopular)
-                .toList()),
-      ],
+          const SectionTitle(title: 'RECOMMENDED'),
+          ProductCarousel(
+              products: Product.products
+                  .where((product) => product.isRecommended)
+                  .toList()),
+          const SectionTitle(title: 'MOST POPULAR'),
+          ProductCarousel(
+              products: Product.products
+                  .where((product) => product.isPopular)
+                  .toList()),
+        ],
+      ),
     );
   }
 }
