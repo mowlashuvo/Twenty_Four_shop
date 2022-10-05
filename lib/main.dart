@@ -34,9 +34,8 @@ class MyApp extends StatelessWidget {
             title: '24/7 Grocery Shop',
             theme: theme(),
             onGenerateRoute: AppRouter.onGenerateRoute,
-            initialRoute: DashboardScreen.routeName,
+            initialRoute: SplashScreen.routeName,
             debugShowCheckedModeBanner: false,
-            home: const DashboardScreen(),
           ),
         )
     );
